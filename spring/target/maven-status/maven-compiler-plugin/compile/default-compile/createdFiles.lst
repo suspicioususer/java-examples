@@ -1,10 +1,10 @@
 service\BaseService.class
-init\WebAppConfig.class
 service\AccountService.class
+dao\AccountDAO.class
+controller\MainController.class
+init\WebAppConfig.class
 exception\CustomException.class
 init\Initializer.class
 controller\AccountController.class
-dao\AccountDAO.class
 model\Account.class
 model\User.class
-controller\MainController.class
