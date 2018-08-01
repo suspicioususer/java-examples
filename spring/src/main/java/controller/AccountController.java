@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import exception.CustomException;
 import model.Account;
 import model.User;
 import service.AccountService;
+import service.UserService;
 
 @Controller
 @RequestMapping(value = "/account")
@@ -21,6 +24,25 @@ public class AccountController {
 
 	@Autowired
 	private AccountService accountService;
+
+	@Autowired
+	private UserService userService;
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView accountsMainView(@RequestParam(value = "userID", required = false) Integer ID)
+			throws CustomException {
+		ModelAndView modelAndView = new ModelAndView("accounts");
+		System.out.println("ID: " + ID);
+		User user;
+		if (ID != null && ID != 0) {
+			user = userService.getUserByID(ID);
+		} else {
+			user = accountService.getUser();
+		}
+		accountService.setUser(user);
+		modelAndView.addObject("user", user);
+		return modelAndView;
+	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView addAccountView() {
@@ -45,36 +67,36 @@ public class AccountController {
 		return modelAndView;
 	}
 
-	/*@RequestMapping(value = "/list")
-	public ModelAndView listAccountsView() {
-		ModelAndView modelAndView = new ModelAndView("list-accounts");
+	/*
+	 * @RequestMapping(value = "/list") public ModelAndView listAccountsView() {
+	 * ModelAndView modelAndView = new ModelAndView("list-accounts");
+	 * 
+	 * List<Account> accounts = accountService.getAccounts();
+	 * modelAndView.addObject("accounts", accounts);
+	 * 
+	 * return modelAndView; }
+	 */
 
-		List<Account> accounts = accountService.getAccounts();
-		modelAndView.addObject("accounts", accounts);
-
-		return modelAndView;
-	}*/
-	
 	@RequestMapping(value = "/list")
 	public ModelAndView listAccountsView() throws NoSuchAlgorithmException {
 		ModelAndView modelAndView = new ModelAndView("list-accounts");
-		User u = new User("admin","6999");
-		List<Account> accounts = accountService.getAccountsByUser(u);
+		List<Account> accounts = accountService.getAccountsByUser(accountService.getUser());
 		modelAndView.addObject("accounts", accounts);
 
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public ModelAndView editTeamPage(@PathVariable Integer ID) {
+	public ModelAndView editAccountView(@PathVariable Integer ID) {
 		ModelAndView modelAndView = new ModelAndView("edit-account");
+		System.out.println("Account ID [EDIT]: " + ID);
 		Account account = accountService.getAccountByID(ID);
 		modelAndView.addObject("account", account);
 		return modelAndView;
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public ModelAndView edditingTeam(@ModelAttribute Account account, @PathVariable Integer ID) {
+	public ModelAndView editAccount(@ModelAttribute Account account, @PathVariable Integer ID) {
 
 		ModelAndView modelAndView = new ModelAndView("accounts");
 
@@ -87,7 +109,7 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public ModelAndView deleteTeam(@PathVariable Integer ID) {
+	public ModelAndView deleteAccount(@PathVariable Integer ID) {
 		ModelAndView modelAndView = new ModelAndView("accounts");
 		accountService.deleteAccount(ID);
 		String message = "Account was successfully deleted.";

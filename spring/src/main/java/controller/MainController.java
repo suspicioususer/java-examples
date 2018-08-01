@@ -9,11 +9,16 @@ public class MainController {
 
 	@RequestMapping(value = "/")
 	public ModelAndView mainPage() {
-		return new ModelAndView("login");
+		return new ModelAndView("redirect:/login/");
 	}
 
-	@RequestMapping(value = "/index")
+	/*@RequestMapping(value = "/index")
 	public ModelAndView indexPage() {
 		return new ModelAndView("login");
+	}*/
+	
+	@RequestMapping(value = "/index")
+	public ModelAndView indexPage() {
+		return new ModelAndView("redirect:/login/");
 	}
 }

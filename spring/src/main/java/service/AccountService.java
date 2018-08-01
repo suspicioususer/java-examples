@@ -14,10 +14,10 @@ import model.User;
 @Service
 @Transactional
 public class AccountService {
-	
+
 	@Autowired
 	private AccountDAO accountDAO;
-	private User user = new User("admin","6999");
+	private User user;
 
 	public Account addAccount(Account account) throws Exception {
 		account.setUser(user);
@@ -26,7 +26,7 @@ public class AccountService {
 
 	public Account updateAccount(Account account) {
 		account.setUser(user);
-		return accountDAO.updateAccount(account.getID(), account);	
+		return accountDAO.updateAccount(account.getID(), account);
 	}
 
 	public Account getAccountByID(int ID) {
@@ -36,13 +36,21 @@ public class AccountService {
 	public void deleteAccount(int ID) {
 		accountDAO.deleteAccount(ID);
 	}
-	
+
 	public List<Account> getAccountsByUser(User user) throws NoSuchAlgorithmException {
 		return accountDAO.getAccountsByUser(user);
-}
+	}
 
 	public List<Account> getAccounts() {
 		return accountDAO.getAccounts();
-}
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 }

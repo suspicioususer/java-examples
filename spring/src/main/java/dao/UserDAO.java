@@ -74,7 +74,7 @@ public class UserDAO {
 	}
 
 	public User getUserByID(int ID) {
-		List<User> users = getCurrentSession().createQuery("from User where uID = :uID").setParameter("uID", ID).list();
+		List<User> users = getCurrentSession().createQuery("from User where userID = :userID").setParameter("userID", ID).list();
 		if (users.isEmpty()) {
 			return null;
 		} else {

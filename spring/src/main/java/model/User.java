@@ -25,7 +25,7 @@ public class User {
 	@Column(name = "userName", nullable = false, unique = true, length = 32)
 	private String userName;
 
-	@Column(name = "password", nullable = false, length = 16)
+	@Column(name = "password", nullable = false, length = 256)
 	private String password;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL)
@@ -70,6 +70,11 @@ public class User {
 
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
+	}
+
+	@Override
+	public String toString() {
+		return "User [ID=" + ID + ", userName=" + userName + ", password=" + password + "]";
 	}
 	
 }

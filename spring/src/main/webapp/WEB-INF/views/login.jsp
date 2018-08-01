@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td><input type="submit" value="Login" /></td>
-			<td><input type="button" value="Register" /></td>
+			<td><input type="button" onclick="location.href='/spring/login/register/'" value="Register" /></td>
 		</tr>
 	</tbody>
 	</table>

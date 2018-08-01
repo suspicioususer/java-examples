@@ -29,8 +29,13 @@ public class LoginController {
 	public ModelAndView login(@RequestParam("userName") String userName, @RequestParam("password") String password){
 		User user;
 		try {
+			//ModelAndView modelAndView = new ModelAndView();
 			user = userService.getUserByData(userName, password);
-			return new ModelAndView("accounts", "user", user);
+			System.out.println("pLogin: " + user.toString());
+			//modelAndView.setViewName("redirect:/account/");
+			//modelAndView.addObject("userID", user.getID());
+			return new ModelAndView("redirect:/account/", "userID", user.getID());
+			//return modelAndView;
 		}  catch (CustomException | NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			return new ModelAndView("error", "exception", e.getMessage());
@@ -43,13 +48,13 @@ public class LoginController {
 		return new ModelAndView("register", "user", new User());
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/pRegister", method = RequestMethod.POST)
 	public ModelAndView register(@RequestParam("userName") String userName, @RequestParam("password") String password) {
 		User user = new User(userName, password);
 		try {
 			userService.checkUserDatas(user);
 			userService.addUser(user);
-			return new ModelAndView("redirect:/login");
+			return new ModelAndView("redirect:/login/");
 		} catch (CustomException | NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			return new ModelAndView("error", "exception", e.getMessage());

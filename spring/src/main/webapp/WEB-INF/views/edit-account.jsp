@@ -15,7 +15,7 @@
 <h1>Edit Account</h1>
 <p>Here you can edit the existing account.</p>
 <p>${message}</p>
-<form:form method="POST" commandName="account" action="${pageContext.request.contextPath}/account/edit/${account.id}.html">
+<form:form method="POST" commandName="account" action="${pageContext.request.contextPath}/account/edit/${account.id}">
 <table>
 <tbody>
 	<tr>
@@ -30,6 +30,6 @@
 </table>
 </form:form>
 
-<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
+<p><a href="${pageContext.request.contextPath}/account/">Home page</a></p>
 </body>
 </html>

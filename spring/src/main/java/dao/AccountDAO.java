@@ -43,7 +43,7 @@ public class AccountDAO {
 	}
 
 	public List<Account> getAccountsByUser(User user) throws NoSuchAlgorithmException {
-		List<Account> accounts = getCurrentSession().createQuery("from Account where uID = :uID").setParameter("uID", user.getID())
+		List<Account> accounts = getCurrentSession().createQuery("from Account where userID = :userID").setParameter("userID", user.getID())
 				.list();
 		if (accounts.isEmpty()) {
 			return null;
@@ -54,7 +54,7 @@ public class AccountDAO {
 
 	public Account getAccountByID(int ID) {
 	
-		Account account = (Account) getCurrentSession().createQuery("from Account where aID = :aID").setParameter("aID", ID).list();
+		Account account = (Account) getCurrentSession().createQuery("from Account where accountID = :accountID").setParameter("accountID", ID).list();
 		//Account account = (Account) getCurrentSession().get(Account.class, ID);
 		return account;
 	}

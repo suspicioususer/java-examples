@@ -27,15 +27,15 @@
 					<td>${account.ID}</td>
 					<td>${account.balance}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/account/edit/${account.ID}.html">Edit</a><br/>
-						<a href="${pageContext.request.contextPath}/account/delete/${account.ID}.html">Delete</a><br/>
+						<a href="${pageContext.request.contextPath}/account/edit/${account.ID}">Edit</a><br/>
+						<a href="${pageContext.request.contextPath}/account/delete/${account.ID}">Delete</a><br/>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
-	<p><a href="${pageContext.request.contextPath}/index.html">Home page</a></p>
+	<p><a href="${pageContext.request.contextPath}/account/">Home page</a></p>
 
 </body>
 </html>

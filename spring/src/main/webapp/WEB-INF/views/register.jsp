@@ -1,53 +1,37 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Create an account</title>
-
-    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Register</title>
 </head>
-
 <body>
+	<h1>Register</h1>
+	<p>Here you can register.</p>
+	<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/login/pRegister.html">
+	<table>
+	<tbody>
+		<tr>
+			<td>Username: </td>
+			<td><form:input path="userName" /></td>
+		</tr>
+		<tr>
+			<td>Password: </td>
+			<td><form:password path="password" /></td>
+		</tr>
+		<tr>
+			<a href="${pageContext.request.contextPath}/login/">Main Page</a><br /> 
+			<td><input type="submit" value="Register" /></td>
+		</tr>
+	</tbody>
+	</table>
+	</form:form>
 
-<div class="container">
-
-    <form:form method="POST" class="form-signin">
-        <h2 class="form-signin-heading">Create your account</h2>
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="userName" class="form-control" placeholder="Username"
-                            autofocus="true"></form:input>
-                <form:errors path="userName"></form:errors>
-            </div>
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
-                <form:errors path="password"></form:errors>
-            </div>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-    </form:form>
-
-</div>
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>

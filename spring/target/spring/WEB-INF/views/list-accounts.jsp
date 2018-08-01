@@ -24,11 +24,11 @@
 		<tbody>
 			<c:forEach var="account" items="${accounts}">
 				<tr>
-					<td>${account.id}</td>
+					<td>${account.ID}</td>
 					<td>${account.balance}</td>
 					<td>
-						<a href="${pageContext.request.contextPath}/account/edit/${account.id}.html">Edit</a><br/>
-						<a href="${pageContext.request.contextPath}/account/delete/${account.id}.html">Delete</a><br/>
+						<a href="${pageContext.request.contextPath}/account/edit/${account.ID}.html">Edit</a><br/>
+						<a href="${pageContext.request.contextPath}/account/delete/${account.ID}.html">Delete</a><br/>
 					</td>
 				</tr>
 			</c:forEach>
