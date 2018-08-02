@@ -33,12 +33,14 @@ public class AccountDAO {
 	public void deleteAccount(int ID) {
 		Account a = getAccountByID(ID);
 		if(a != null){
-			getCurrentSession().delete(a);
+			//getCurrentSession().delete(a);
+			getCurrentSession().createQuery("delete from Account where accountID = :accountID").setParameter("accountID", ID).executeUpdate();
 		}
 	}
 
 	public Account updateAccount(int ID, Account account) {
-		getCurrentSession().update(account);
+		getCurrentSession().createQuery("update Account set balance = :balance where accountID = :accountID").setParameter("accountID", account.getID()).setParameter("balance", account.getBalance()).executeUpdate();
+		//getCurrentSession().update(account);
 		return account;
 	}
 
@@ -54,7 +56,7 @@ public class AccountDAO {
 
 	public Account getAccountByID(int ID) {
 	
-		Account account = (Account) getCurrentSession().createQuery("from Account where accountID = :accountID").setParameter("accountID", ID).list();
+		Account account = ((List<Account>) getCurrentSession().createQuery("from Account where accountID = :accountID").setParameter("accountID", ID).list()).get(0);
 		//Account account = (Account) getCurrentSession().get(Account.class, ID);
 		return account;
 	}

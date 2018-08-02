@@ -14,7 +14,7 @@
 <body>
 	<h1>Login</h1>
 	<p>Here you can login.</p>
-	<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/login/pLogin.html">
+	<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/login/pLogin">
 	<table>
 	<tbody>
 		<tr>

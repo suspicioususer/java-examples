@@ -11,8 +11,8 @@
 	<h1>Accounts</h1>
 	<p>
 		${message}<br />
-		<a href="${pageContext.request.contextPath}/account/add.html">Add Account</a><br /> 
-		<a href="${pageContext.request.contextPath}/account/list.html">List Accounts</a><br />
+		<a href="${pageContext.request.contextPath}/account/add">Add Account</a><br /> 
+		<a href="${pageContext.request.contextPath}/account/list">List Accounts</a><br />
 	</p>
 </body>
 </html>

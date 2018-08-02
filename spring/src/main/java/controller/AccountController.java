@@ -86,20 +86,26 @@ public class AccountController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit/{ID}", method = RequestMethod.GET)
 	public ModelAndView editAccountView(@PathVariable Integer ID) {
 		ModelAndView modelAndView = new ModelAndView("edit-account");
 		System.out.println("Account ID [EDIT]: " + ID);
 		Account account = accountService.getAccountByID(ID);
+		System.out.println("Account [EDIT]: " + account.toString());
 		modelAndView.addObject("account", account);
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit/{ID}", method = RequestMethod.POST)
 	public ModelAndView editAccount(@ModelAttribute Account account, @PathVariable Integer ID) {
 
 		ModelAndView modelAndView = new ModelAndView("accounts");
-
+		System.out.println("[pEdit] ID: " + ID);
+		System.out.println("[pEdit] Account <ID>: " + account.getID());
+		System.out.println("[pEdit] Account <BALANCE>: " + account.getBalance());
+		
+		account.setUser(accountService.getUser());
+		
 		accountService.updateAccount(account);
 
 		String message = "Account was successfully edited.";
@@ -108,9 +114,10 @@ public class AccountController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/delete/{ID}", method = RequestMethod.GET)
 	public ModelAndView deleteAccount(@PathVariable Integer ID) {
 		ModelAndView modelAndView = new ModelAndView("accounts");
+		System.out.println("[delete] ID: " + ID);
 		accountService.deleteAccount(ID);
 		String message = "Account was successfully deleted.";
 		modelAndView.addObject("message", message);

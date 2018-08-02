@@ -15,12 +15,22 @@
 <h1>Edit Account</h1>
 <p>Here you can edit the existing account.</p>
 <p>${message}</p>
-<form:form method="POST" commandName="account" action="${pageContext.request.contextPath}/account/edit/${account.id}">
+<form:form method="POST" commandName="account" action="${pageContext.request.contextPath}/account/edit/${account.ID}">
+<form:hidden path="ID" />
 <table>
 <tbody>
 	<tr>
 		<td>Balance: </td>
 		<td><form:input path="balance" /></td>
+	</tr>
+	<tr>
+		<td>ID: ${account.ID}</td>
+	</tr>
+	<tr>
+		<td>Balance: ${account.balance}</td>
+	</tr>
+	<tr>
+		<td>UserID: ${account.user.ID}</td>
 	</tr>
 	<tr>
 		<td><input type="submit" value="Edit" /></td>

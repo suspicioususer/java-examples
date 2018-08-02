@@ -14,7 +14,7 @@
 <body>
 	<h1>Add Account</h1>
 	<p>Here you can add a new account.</p>
-	<form:form method="POST" commandName="account" action="${pageContext.request.contextPath}/account/add.html">
+	<form:form method="POST" commandName="account" action="${pageContext.request.contextPath}/account/add">
 	<table>
 	<tbody>
 		<tr>
@@ -28,6 +28,6 @@
 	</table>
 	</form:form>
 	
-	<p><a href="${pageContext.request.contextPath}/index.html">Accounts page</a></p>
+	<p><a href="${pageContext.request.contextPath}/account/">Accounts page</a></p>
 </body>
 </html>
